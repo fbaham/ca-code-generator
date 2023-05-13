@@ -1,3 +1,5 @@
+var entityInput = document.getElementById("entity-input");
+
 var interfaceOutput = document.getElementById("interface-output");
 var serviceOutput = document.getElementById("service-output");
 var commandsOutput = document.getElementById("commands-output");
@@ -6,9 +8,8 @@ var controllerOutput = document.getElementById("controller-output");
 var viewsOutput = document.getElementById("views-output");
 
 
-
-
 function generate() {
+    getProperties();
     generateInterface();
     generateService();
     generateCommands();
@@ -36,27 +37,31 @@ function generateInterface() {
     interfaceOutput.textContent += str;
 }
 
+function getProperties() {
+    console.log(entityInput.value);
+}
+
 function generateService() {
     var str = "Service";
-    serviceOutput.textContent += str;
+    serviceOutput.value = str;
 }
 
 function generateCommands() {
     var str = "Commands";
-    commandsOutput.textContent += str;
+    commandsOutput.value = str;
 }
 
 function generateQueries() {
     var str = "Queries";
-    queriesOutput.textContent += str;
+    queriesOutput.value = str;
 }
 
 function generateController() {
     var str = "Controller";
-    controllerOutput.textContent += str;
+    controllerOutput.value = str;
 }
 
 function generateViews() {
     var str = "Views";
-    viewsOutput.textContent += str;
+    viewsOutput.value = str;
 }
