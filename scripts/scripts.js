@@ -33,30 +33,30 @@ function generateInterface() {
     str += "	Task<Unit> DeletePrestacion(int id, CancellationToken cancellationToken);\n";
     str += "	Task<int> LoadPrestacionesFormCsv();\n";
     str += "}\n";
-    interfaceOutput.textContent = str;
+    interfaceOutput.textContent += str;
 }
 
 function generateService() {
     var str = "Service";
-    serviceOutput.textContent = str;
+    serviceOutput.textContent += str;
 }
 
 function generateCommands() {
     var str = "Commands";
-    commandsOutput.textContent = str;
+    commandsOutput.textContent += str;
 }
 
 function generateQueries() {
     var str = "Queries";
-    queriesOutput.textContent =str;
+    queriesOutput.textContent += str;
 }
 
 function generateController() {
     var str = "Controller";
-    controllerOutput.textContent =str;
+    controllerOutput.textContent += str;
 }
 
 function generateViews() {
     var str = "Views";
-    viewsOutput.textContent =str;
+    viewsOutput.textContent += str;
 }
