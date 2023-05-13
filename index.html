@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Architecture C# Simple Crud Generator</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <form action="" class="row g-3">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="entity-input" class="form-label">Your entity here:</label>
+                    <textarea class="form-control" id="entity-input" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3" onclick="generate()">Generate</button>
+            </div>
+        </form>
+        <div class="row g-3">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-interface-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-interface" type="button" role="tab" aria-controls="nav-home"
+                        aria-selected="true">Interface</button>
+                    <button class="nav-link" id="nav-service-tab" data-bs-toggle="tab" data-bs-target="#nav-service"
+                        type="button" role="tab" aria-controls="nav-service" aria-selected="false">Service</button>
+                    <button class="nav-link" id="nav-commands-tab" data-bs-toggle="tab" data-bs-target="#nav-commands"
+                        type="button" role="tab" aria-controls="nav-commands" aria-selected="false">Commands</button>
+                    <button class="nav-link" id="nav-queries-tab" data-bs-toggle="tab" data-bs-target="#nav-queries"
+                        type="button" role="tab" aria-controls="nav-queries" aria-selected="false">Queries</button>
+                    <button class="nav-link" id="nav-controller-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-controller" type="button" role="tab" aria-controls="nav-controller"
+                        aria-selected="false">Controller</button>
+                    <button class="nav-link" id="nav-views-tab" data-bs-toggle="tab" data-bs-target="#nav-views"
+                        type="button" role="tab" aria-controls="nav-views" aria-selected="false">Views</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-interface" role="tabpanel"
+                    aria-labelledby="nav-interface-tab" tabindex="0">
+                    <textarea class="form-control" id="interface-output" rows="6" disabled></textarea>
+                </div>
+                <div class="tab-pane fade" id="nav-service" role="tabpanel" aria-labelledby="nav-service-tab"
+                    tabindex="0">
+                    <textarea class="form-control" id="service-output" rows="6" disabled></textarea>
+                </div>
+                <div class="tab-pane fade" id="nav-commands" role="tabpanel" aria-labelledby="nav-commands-tab"
+                    tabindex="0">
+                    <textarea class="form-control" id="commands-output" rows="6" disabled></textarea>
+                </div>
+                <div class="tab-pane fade" id="nav-queries" role="tabpanel" aria-labelledby="nav-queries-tab"
+                    tabindex="0">
+                    <textarea class="form-control" id="queries-output" rows="6" disabled></textarea>
+                </div>
+                <div class="tab-pane fade" id="nav-controller" role="tabpanel" aria-labelledby="nav-controller-tab"
+                    tabindex="0">
+                    <textarea class="form-control" id="controller-output" rows="6" disabled></textarea>
+                </div>
+                <div class="tab-pane fade" id="nav-views" role="tabpanel" aria-labelledby="nav-views-tab" tabindex="0">
+                    <textarea class="form-control" id="views-output" rows="6" disabled></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/bootstrap.bundle.min.js"></script>
+    <script src="scripts/scripts.js"></script>
+</body>
+
+</html>
