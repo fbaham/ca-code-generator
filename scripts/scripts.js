@@ -38,7 +38,19 @@ function generateInterface() {
 }
 
 function getProperties() {
-    console.log(entityInput.value);
+    var output = {};
+    output.properties = []
+    entityInput.value.split('\n').forEach(element => {
+        var rowArr = element.split(' ')
+        if (rowArr[0] == "public" && rowArr[1] == "class") {
+            output.className = rowArr[2]
+        }
+        if (rowArr[4] == "public") {
+            output.properties.push({type: rowArr[5], propertie: rowArr[6]})
+            console.log(rowArr[5], rowArr[6]);
+        }
+    });
+    console.log(output);
 }
 
 function generateService() {
