@@ -20,15 +20,17 @@
                 </div>
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3" onclick="generate()">Generate</button>
+                <button type="button" class="btn btn-primary mb-3" onclick="generate()">Generate</button>
             </div>
         </form>
         <div class="row g-3">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-interface-tab" data-bs-toggle="tab"
-                        data-bs-target="#nav-interface" type="button" role="tab" aria-controls="nav-home"
-                        aria-selected="true">Interface</button>
+                    <button class="nav-link active" id="nav-dto-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-dto" type="button" role="tab" aria-controls="nav-dto"
+                        aria-selected="true">DTOs</button>
+                    <button class="nav-link" id="nav-vm-tab" data-bs-toggle="tab" data-bs-target="#nav-vm"
+                        type="button" role="tab" aria-controls="nav-vm" aria-selected="false">View Models</button>
                     <button class="nav-link" id="nav-service-tab" data-bs-toggle="tab" data-bs-target="#nav-service"
                         type="button" role="tab" aria-controls="nav-service" aria-selected="false">Service</button>
                     <button class="nav-link" id="nav-commands-tab" data-bs-toggle="tab" data-bs-target="#nav-commands"
@@ -40,12 +42,29 @@
                         aria-selected="false">Controller</button>
                     <button class="nav-link" id="nav-views-tab" data-bs-toggle="tab" data-bs-target="#nav-views"
                         type="button" role="tab" aria-controls="nav-views" aria-selected="false">Views</button>
+                    <button class="nav-link" id="nav-gist-tab" data-bs-toggle="tab" data-bs-target="#nav-gist"
+                        type="button" role="tab" aria-controls="nav-gist" aria-selected="false">Gist</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-interface" role="tabpanel"
-                    aria-labelledby="nav-interface-tab" tabindex="0">
-                    <textarea class="form-control" id="interface-output" rows="6" disabled></textarea>
+                <div class="tab-pane fade show active" id="nav-dto" role="tabpanel" aria-labelledby="nav-dto-tab"
+                    tabindex="0">
+                    <div class="col-12">
+                        <label for="create-dto-output" class="form-label">Create:</label>
+                        <textarea class="form-control" id="create-dto-output" rows="6" disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="get-dto-output" class="form-label">Get:</label>
+                        <textarea class="form-control" id="get-dto-output" rows="6" disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="dto-output" class="form-label">DTO:</label>
+                        <textarea class="form-control" id="dto-output" rows="6" disabled></textarea>
+                    </div>
+                    
+                </div>
+                <div class="tab-pane fade" id="nav-vm" role="tabpanel" aria-labelledby="nav-vm-tab" tabindex="0">
+                    <textarea class="form-control" id="vm-output" rows="6" disabled></textarea>
                 </div>
                 <div class="tab-pane fade" id="nav-service" role="tabpanel" aria-labelledby="nav-service-tab"
                     tabindex="0">
@@ -65,6 +84,24 @@
                 </div>
                 <div class="tab-pane fade" id="nav-views" role="tabpanel" aria-labelledby="nav-views-tab" tabindex="0">
                     <textarea class="form-control" id="views-output" rows="6" disabled></textarea>
+                </div>
+                <div class="tab-pane fade" id="nav-gist" role="tabpanel" aria-labelledby="nav-gist-tab" tabindex="0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">URL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="">
+                                    <td scope="row"><a
+                                            href="https://gist.github.com/fbaham/a4db8abba4c60f52d87a870c6e72476b#file-ientityservice-cs"
+                                            target="_blank">IEntityService.cs</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
