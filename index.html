@@ -31,12 +31,20 @@
                         aria-selected="true">DTOs</button>
                     <button class="nav-link" id="nav-vm-tab" data-bs-toggle="tab" data-bs-target="#nav-vm"
                         type="button" role="tab" aria-controls="nav-vm" aria-selected="false">View Models</button>
+                    <button class="nav-link" id="nav-events-tab" data-bs-toggle="tab" data-bs-target="#nav-events"
+                        type="button" role="tab" aria-controls="nav-events" aria-selected="false">Events</button>
+                    <button class="nav-link" id="nav-event-handlers-tab" data-bs-toggle="tab" data-bs-target="#nav-event-handlers"
+                        type="button" role="tab" aria-controls="nav-event-handlers" aria-selected="false">Event Handlers</button>
+                    <button class="nav-link" id="nav-interface-tab" data-bs-toggle="tab" data-bs-target="#nav-interface"
+                        type="button" role="tab" aria-controls="nav-interface" aria-selected="false">Interface</button>
                     <button class="nav-link" id="nav-service-tab" data-bs-toggle="tab" data-bs-target="#nav-service"
                         type="button" role="tab" aria-controls="nav-service" aria-selected="false">Service</button>
                     <button class="nav-link" id="nav-commands-tab" data-bs-toggle="tab" data-bs-target="#nav-commands"
                         type="button" role="tab" aria-controls="nav-commands" aria-selected="false">Commands</button>
                     <button class="nav-link" id="nav-queries-tab" data-bs-toggle="tab" data-bs-target="#nav-queries"
                         type="button" role="tab" aria-controls="nav-queries" aria-selected="false">Queries</button>
+                    <button class="nav-link" id="nav-record-tab" data-bs-toggle="tab" data-bs-target="#nav-record"
+                        type="button" role="tab" aria-controls="nav-record" aria-selected="false">Records</button>
                     <button class="nav-link" id="nav-controller-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-controller" type="button" role="tab" aria-controls="nav-controller"
                         aria-selected="false">Controller</button>
@@ -64,26 +72,106 @@
                     
                 </div>
                 <div class="tab-pane fade" id="nav-vm" role="tabpanel" aria-labelledby="nav-vm-tab" tabindex="0">
-                    <textarea class="form-control" id="vm-output" rows="6" disabled></textarea>
+                    <div class="col-12">
+                        <label for="vm-output" class="form-label">Export View model:</label>
+                        <textarea class="form-control" id="vm-output" rows="6" disabled></textarea>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab" tabindex="0">
+                    <div class="col-12">
+                        <label for="create-event-output" class="form-label">Create Event:</label>
+                        <textarea class="form-control" id="create-event-output" rows="6" disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="update-event-output" class="form-label">Update Event:</label>
+                        <textarea class="form-control" id="update-event-output" rows="6" disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="delete-event-output" class="form-label">Delete Event:</label>
+                        <textarea class="form-control" id="delete-event-output" rows="6" disabled></textarea>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-event-handlers" role="tabpanel" aria-labelledby="nav-event-handlers-tab" tabindex="0">
+                    <div class="col-12">
+                        <label for="create-event-handler-output" class="form-label">Create Event Handler:</label>
+                        <textarea class="form-control" id="create-event-handler-output" rows="6" disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="update-event-handler-output" class="form-label">Update Event Handler:</label>
+                        <textarea class="form-control" id="update-event-handler-output" rows="6" disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="delete-event-handler-output" class="form-label">Delete Event Handler:</label>
+                        <textarea class="form-control" id="delete-event-handler-output" rows="6" disabled></textarea>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-interface" role="tabpanel" aria-labelledby="nav-interface-tab"
+                    tabindex="0">
+                    <div class="col-12">
+                        <label for="interface-output" class="form-label">Interface:</label>
+                        <textarea class="form-control" id="interface-output" rows="6" disabled></textarea>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="nav-service" role="tabpanel" aria-labelledby="nav-service-tab"
                     tabindex="0">
-                    <textarea class="form-control" id="service-output" rows="6" disabled></textarea>
+                    <div class="col-12">
+                        <label for="service-output" class="form-label">Service:</label>
+                        <textarea class="form-control" id="service-output" rows="6" disabled></textarea>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="nav-commands" role="tabpanel" aria-labelledby="nav-commands-tab"
                     tabindex="0">
-                    <textarea class="form-control" id="commands-output" rows="6" disabled></textarea>
+                    <div class="col-12">
+                        <label for="create-command-output" class="form-label">Create Command:</label>
+                        <textarea class="form-control" id="create-command-output" rows="6" disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="update-command-output" class="form-label">Update Command:</label>
+                        <textarea class="form-control" id="update-command-output" rows="6" disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="delete-command-output" class="form-label">Delete Command:</label>
+                        <textarea class="form-control" id="delete-command-output" rows="6" disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="load-command-output" class="form-label">Load Command:</label>
+                        <textarea class="form-control" id="load-command-output" rows="6" disabled></textarea>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="nav-queries" role="tabpanel" aria-labelledby="nav-queries-tab"
                     tabindex="0">
-                    <textarea class="form-control" id="queries-output" rows="6" disabled></textarea>
+                    <div class="col-12">
+                        <label for="get-query-output" class="form-label">Get Query:</label>
+                        <textarea class="form-control" id="get-query-output" rows="6" disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="export-query-output" class="form-label">Export Query:</label>
+                        <textarea class="form-control" id="export-query-output" rows="6" disabled></textarea>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-record" role="tabpanel" aria-labelledby="nav-record-tab"
+                    tabindex="0">
+                    <div class="col-12">
+                        <label for="file-record-output" class="form-label">File Record:</label>
+                        <textarea class="form-control" id="file-record-output" rows="6" disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="map-output" class="form-label">Record Map:</label>
+                        <textarea class="form-control" id="map-output" rows="6" disabled></textarea>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="nav-controller" role="tabpanel" aria-labelledby="nav-controller-tab"
                     tabindex="0">
-                    <textarea class="form-control" id="controller-output" rows="6" disabled></textarea>
+                    <div class="col-12">
+                        <label for="controller-output" class="form-label">Controller:</label>
+                        <textarea class="form-control" id="controller-output" rows="6" disabled></textarea>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="nav-views" role="tabpanel" aria-labelledby="nav-views-tab" tabindex="0">
-                    <textarea class="form-control" id="views-output" rows="6" disabled></textarea>
+                    <div class="col-12">
+                        <label for="views-output" class="form-label">Views:</label>
+                        <textarea class="form-control" id="views-output" rows="6" disabled></textarea>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="nav-gist" role="tabpanel" aria-labelledby="nav-gist-tab" tabindex="0">
                     <div class="table-responsive">
