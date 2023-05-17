@@ -476,7 +476,7 @@ function generateMap(obj) {
 function generateController(obj) {
     var str = "[Route(\"api/[controller]\")]\n";
     str += "[ApiController]\n";
-    str += "public class " + obj.className + "esController : ApiControllerBase\n";
+    str += "public class " + obj.className + "sController : ApiControllerBase\n";
     str += "{\n";
     str += "	[HttpPost(\"CreateAsync\")]\n";
     str += "	public async Task<ActionResult<int>> CreateAsync(Create" + obj.className + "Command command)\n";
