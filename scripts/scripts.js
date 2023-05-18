@@ -82,10 +82,11 @@ function getPropertiesList(obj) {
 function mapProperties(obj) {
     var str = "";
     obj.properties.forEach(p => {
-        str += "\t\tentity." + p.propertie + " = obj." + p.propertie + ",\n";
+        str += "\t\tentity." + p.propertie + " = obj." + p.propertie + ";\n";
     });
     return str;
 }
+
 
 function mapNewProperties(obj) {
     var str = "";
@@ -139,7 +140,7 @@ function generateVms(obj) {
 }
 
 function generateEvents(obj) {
-    var str = "public class " + obj.className + "CreatedEvent : BaseEvent\n";
+    var str = "public class " + obj.className + "CreatedEvent : DomainEvent\n";
     str += "{\n";
     str += "	public " + obj.className + "CreatedEvent(" + obj.className + " obj)\n";
     str += "	{\n";
@@ -148,7 +149,7 @@ function generateEvents(obj) {
     str += "	public " + obj.className + " Obj { get; }\n";
     str += "}\n";
     createEventOutput.value = str;
-    str = "public class " + obj.className + "UpdatedEvent : BaseEvent\n";
+    str = "public class " + obj.className + "UpdatedEvent : DomainEvent\n";
     str += "{\n";
     str += "	public " + obj.className + "UpdatedEvent(" + obj.className + " obj)\n";
     str += "	{\n";
@@ -157,7 +158,7 @@ function generateEvents(obj) {
     str += "	public " + obj.className + " Obj { get; }\n";
     str += "}\n";
     updateEventOutput.value = str;
-    str = "public class " + obj.className + "DeletedEvent : BaseEvent\n";
+    str = "public class " + obj.className + "DeletedEvent : DomainEvent\n";
     str += "{\n";
     str += "	public " + obj.className + "DeletedEvent(" + obj.className + " obj)\n";
     str += "	{\n";
@@ -217,24 +218,26 @@ function generateInterface(obj){
     var str = "public interface I" + obj.className + "Service\n";
     str += "{\n";
     str += "    Task<int> CreateAsync(Create" + obj.className + "Dto obj, CancellationToken cancellationToken);\n";
-    str += "    Task<Get" + obj.className + "ListDto> Get(int id);\n";
+    str += "    Task<Get" + obj.className + "ListDto> GetAsync(int id);\n";
     str += "    Task<Unit> UpdateAsync(" + obj.className + "Dto obj, CancellationToken cancellationToken);\n";
     str += "    Task<Unit> DeleteAsync(int id, CancellationToken cancellationToken);\n";
     str += "    Task<int> LoadAsync(string? base64, CancellationToken cancellationToken);\n";
-    str += "    Task<Export" + obj.className + "ListVm> Export(CancellationToken cancellationToken);\n";
+    str += "    Task<Export" + obj.className + "ListVm> ExportAsync(CancellationToken cancellationToken);\n";
     str += "}\n";
     interfaceOutput.value = str;
 }
 
 function generateService(obj) {
-    var str = "public class " + obj.className + "Service : IEntityService<Create" + obj.className + "Dto, Get" + obj.className + "ListDto, " + obj.className + "Dto, Export" + obj.className + "ListVm>\n";
+    var str = "public class " + obj.className + "Service : I" + obj.className + "Service\n";
     str += "{\n";
     str += "	private readonly IApplicationDbContext _context;\n";
     str += "	private readonly IMapper _mapper;\n";
-    str += "	public " + obj.className + "Service(IApplicationDbContext context, IMapper mapper)\n";
+    str += "    private readonly ICsvFileBuilder _fileBuilder;\n";
+    str += "	public " + obj.className + "Service(IApplicationDbContext context, IMapper mapper, ICsvFileBuilder fileBuilder)\n";
     str += "	{\n";
     str += "		_context = context;\n";
     str += "		_mapper = mapper;\n";
+    str += "        _fileBuilder = fileBuilder;\n";
     str += "	}\n\n";
     str += "	public async Task<Unit> Delete" + obj.className + "(int id, CancellationToken cancellationToken)\n";
     str += "	{\n";
@@ -261,15 +264,15 @@ function generateService(obj) {
     str += "		await _context.SaveChangesAsync(cancellationToken);\n";
     str += "		return entity.Id;\n";
     str += "	}\n\n";
-    str += "	public Get" + obj.className + "ListDto GetAsync(int id)\n";
+    str += "	public async Task<Get" + obj.className + "ListDto> GetAsync(int id)\n";
     str += "	{\n";
     str += "		return new Get" + obj.className + "ListDto()\n";
     str += "		{\n";
-    str += "			" + obj.className + "List = _context." + obj.className + "s\n";
+    str += "			" + obj.className + "List = await _context." + obj.className + "s\n";
     str += "			.Where(o => o.Id == id || id == 0)\n";
     str += "			.OrderBy(o => o.Id)\n";
     str += "			.ProjectTo<" + obj.className + "Dto>(_mapper.ConfigurationProvider)\n";
-    str += "			.ToList()\n";
+    str += "			.ToListAsync()\n";
     str += "		};\n";
     str += "	}\n\n";
     str += "	public async Task<Unit> UpdateAsync(" + obj.className + "Dto obj, CancellationToken cancellationToken)\n";
@@ -321,7 +324,7 @@ function generateService(obj) {
     str += "		}\n";
     str += "		return c;\n";
     str += "	}\n";
-    str += "    public async Task<Export" + obj.className + "ListVm> Export(CancellationToken cancellationToken)\n";
+    str += "    public async Task<Export" + obj.className + "ListVm> ExportAsync(CancellationToken cancellationToken)\n";
     str += "    {\n";
     str += "        var records = await _context." + obj.className + "s\n";
     str += "            .ProjectTo<" + obj.className + "ItemFileRecord>(_mapper.ConfigurationProvider)\n";
@@ -432,7 +435,7 @@ function generateQueries(obj) {
     str += "	}\n";
     str += "	public async Task<Get" + obj.className + "ListDto> Handle(Get" + obj.className + "ListQuery request, CancellationToken cancellationToken)\n";
     str += "	{\n";
-    str += "		return await _" + obj.className.toLowerCase() + "Service.Get(request.Id);\n";
+    str += "		return await _" + obj.className.toLowerCase() + "Service.GetAsync(request.Id);\n";
     str += "	}\n";
     str += "}\n";
     getQueryOutput.value = str;
@@ -448,7 +451,7 @@ function generateQueries(obj) {
     str += "    }\n";
     str += "	public async Task<Export" + obj.className + "ListVm> Handle(Export" + obj.className + "ListQuery request, CancellationToken cancellationToken)\n";
     str += "	{\n";
-    str += "		return await _" + obj.className.toLowerCase() + "Service.Export(cancellationToken);\n";
+    str += "		return await _" + obj.className.toLowerCase() + "Service.ExportAsync(cancellationToken);\n";
     str += "	}\n";
     str += "}\n";
     exportQueryOutput.value = str;
@@ -463,7 +466,7 @@ function generateFileRecord(obj) {
 }
 
 function generateMap(obj) {
-    var str = "internal class " + obj.className + "RecordMap : ClassMap<" + obj.className + "FileRecord>\n";
+    var str = "public class " + obj.className + "RecordMap : ClassMap<" + obj.className + "FileRecord>\n";
     str += "{\n";
     str += "	public " + obj.className + "RecordMap()\n";
     str += "	{\n";
