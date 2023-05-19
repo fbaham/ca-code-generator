@@ -340,7 +340,7 @@ function generateService(obj) {
 }
 
 function generateCommands(obj) {
-    var str = "public record Create" + obj.className + "Command : IRequest<int>\n";
+    var str = "[Authorize(Policy = Permissions.%%_WRITE)]\npublic record Create" + obj.className + "Command : IRequest<int>\n";
     str += "{\n";
     str += getPropertiesList(obj)
     str += "}\n";
@@ -362,7 +362,7 @@ function generateCommands(obj) {
     str += "	}\n";
     str += "}\n";
     createCommandOutput.value = str;
-    str = "public record Update" + obj.className + "Command : IRequest<Unit>\n";
+    str = "[Authorize(Policy = Permissions.%%_WRITE)]\npublic record Update" + obj.className + "Command : IRequest<Unit>\n";
     str += "{\n";
     str += "	public int Id { get; set; }\n";
     str += getPropertiesList(obj)
@@ -385,7 +385,7 @@ function generateCommands(obj) {
     str += "	}\n";
     str += "}\n";
     updateCommandOutput.value = str;
-    str = "public record Delete" + obj.className + "Command : IRequest<Unit>\n";
+    str = "[Authorize(Policy = Permissions.%%_WRITE)]\npublic record Delete" + obj.className + "Command : IRequest<Unit>\n";
     str += "{\n";
     str += "	public int Id { get; set; }\n";
     str += "}\n";
@@ -402,7 +402,7 @@ function generateCommands(obj) {
     str += "	}\n";
     str += "}\n";
     deleteCommandOutput.value = str;
-    str = "public record Load" + obj.className + "ListCommand : IRequest<int>\n";
+    str = "[Authorize(Policy = Permissions.%%_WRITE)]\npublic record Load" + obj.className + "ListCommand : IRequest<int>\n";
     str += "{\n";
     str += "	public string? base64 { get; set; }\n";
     str += "}\n";
@@ -422,7 +422,7 @@ function generateCommands(obj) {
 }
 
 function generateQueries(obj) {
-    var str = "public record Get" + obj.className + "ListQuery : IRequest<Get" + obj.className + "ListDto>\n";
+    var str = "[Authorize(Policy = Permissions.%%_READ)]\npublic record Get" + obj.className + "ListQuery : IRequest<Get" + obj.className + "ListDto>\n";
     str += "{\n";
     str += "    public int Id { get; set; }\n";
     str += "}\n";
@@ -439,7 +439,7 @@ function generateQueries(obj) {
     str += "	}\n";
     str += "}\n";
     getQueryOutput.value = str;
-    str = "public record Export" + obj.className + "ListQuery : IRequest<Export" + obj.className + "ListVm>\n";
+    str = "[Authorize(Policy = Permissions.%%_READ)]\npublic record Export" + obj.className + "ListQuery : IRequest<Export" + obj.className + "ListVm>\n";
     str += "{\n";
     str += "}\n";
     str += "public class Export" + obj.className + "ListQueryHandler : IRequestHandler<Export" + obj.className + "ListQuery, Export" + obj.className + "ListVm>\n";
